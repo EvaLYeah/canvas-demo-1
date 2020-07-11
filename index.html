@@ -17,17 +17,27 @@
 
         ctx.fillStyle = 'pink'
         ctx.strokeStyle = 'pink'
+        ctx.lineWidth = '10'
+        ctx.lineCap = 'round'
+
+        function drawLine (x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke()
+            ctx.fill()
+        }
 
         let painting = false
-        canvas.onmousedown = () => {
+
+        canvas.onmousedown = (e) => {
             painting = true
+            last = [e.clientX, e.clientY]
         }
         canvas.onmousemove = (e) => {
             if (painting === true) {
-                ctx.beginPath()
-                ctx.arc(e.clientX, e.clientY, 10, 0, Math.PI * 2, true)
-                ctx.stroke()
-                ctx.fill()
+                drawLine(e.clientX, e.clientY, last[0],last[1])
+                last =[e.clientX, e.clientY]
             } else {
                 console.log('什么都不做')
             }
