@@ -10,9 +10,11 @@
 </head>
 
 <body>
-    <canvas id="canvas" height="800px" width="800px"></canvas>
+    <canvas id="canvas"></canvas>
     <script>
         let canvas = document.getElementById('canvas')
+        canvas.height = document.documentElement.clientHeight
+        canvas.width = document.documentElement.clientWidth
         let ctx = canvas.getContext('2d')
 
         ctx.fillStyle = 'pink'
@@ -47,7 +49,6 @@
 
         // 兼容手机
         let isTouchDevice = 'ontouchstart' in document.documentElement
-        console.log(isTouchDevice)
         if (isTouchDevice) {
             canvas.ontouchstart = (e) => {
                 console.log(e)
